@@ -9,7 +9,8 @@ function getSpeciesByIds(...ids) {
   Lilian Azevedo me auxiliou.
   */
 
-  let speciesArr = data.species.filter( itemFilter => itemFilter.id === ids.find( (itemFind) => itemFind === itemFilter.id) );
+  const speciesArr = data.species
+    .filter((itemFilter) => itemFilter.id === ids.find((itemFind) => itemFind === itemFilter.id));
 
   return speciesArr;
 }

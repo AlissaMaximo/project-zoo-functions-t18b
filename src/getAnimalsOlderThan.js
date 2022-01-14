@@ -7,9 +7,9 @@ function getAnimalsOlderThan(animal, age) {
   Retornar booleano.
   */
 
-  let specieName = data.species.find(specieFind => specieFind.name === animal);
+  const specieName = data.species.find((specieFind) => specieFind.name === animal);
 
-  return specieName.residents.every(resident => resident.age >= age);
+  return specieName.residents.every((resident) => resident.age >= age);
 }
 
 module.exports = getAnimalsOlderThan;
