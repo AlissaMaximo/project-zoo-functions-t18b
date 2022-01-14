@@ -62,11 +62,21 @@ function isManager(id) {
 }
 
 function getRelatedEmployees(managerId) {
-  // seu código aqui
+  /*Tabata Souto me ajudou ao recomendar o filter e map.*/
   if (isManager(managerId) === true) {
-    let collaborators = data.employees.map(employee => employee.managers.find(manager => manager === managerId));
+    let collaborators = data.employees.filter(employee => employee.managers.find(manager => manager === managerId) === managerId);
+    let collaboratorsNames = [];
 
-    return collaborators;
+    collaboratorsFirstNames = collaborators.map(collaborator => collaborator.firstName);
+    collaboratorsLastNames = collaborators.map(collaborator => collaborator.lastName);
+
+    let length = collaboratorsFirstNames.length;
+
+    for (let i = 0; i < length; i += 1) {
+      collaboratorsNames.push(`${collaboratorsFirstNames[i]} ${collaboratorsLastNames[i]}`);
+    }
+
+    return collaboratorsNames;
   }
   throw new Error('O id inserido não é de uma pessoa colaboradora gerente!');
 }
