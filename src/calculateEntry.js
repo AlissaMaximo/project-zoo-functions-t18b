@@ -20,18 +20,21 @@ function countEntrants(entrants) {
   }, {});
   return counted;
 }
-const entradas = [
-  { name: 'Lara Carvalho', age: 5 },
-  { name: 'Frederico Moreira', age: 5 },
-  { name: 'Pedro Henrique Carvalho', age: 5 },
-  { name: 'Maria Costa', age: 18 },
-  { name: 'Núbia Souza', age: 18 },
-  { name: 'Carlos Nogueira', age: 50 },
-];
-console.log(countEntrants(entradas));
 
 function calculateEntry(entrants) {
-  // seu código aqui
+  if (entrants === undefined) { return 0; }
+  const isEmpty = Object.keys(entrants).length === 0;
+  if (isEmpty === true) { return 0; }
+  const entrantsObj = countEntrants(entrants);
+  return entrantsObj.child * 20.99 + entrantsObj.adult * 49.99 + entrantsObj.senior * 24.99;
 }
 
 module.exports = { calculateEntry, countEntrants };
+
+/*
+Referência para função countEntrants:
+https://www.programiz.com/javascript/examples/add-key-object
+
+Referência para função calculateEntry:
+https://bobbyhadz.com/blog/javascript-check-if-object-is-empty
+*/
