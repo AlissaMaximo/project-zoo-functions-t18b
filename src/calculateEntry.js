@@ -1,29 +1,23 @@
 const data = require('../data/zoo_data');
 
 function countEntrants(entrants) {
-  const counted = entrants.reduce((acc, cur) => {
-    const { age } = cur;
-
-    if (age < 18) {
-      if (acc.child === undefined) {
-        acc.child = 0;
-      }
-      acc.child += 1;
-    } else if (age >= 50) {
-      if (acc.senior === undefined) {
-        acc.senior = 0;
-      }
-      acc.senior += 1;
-    } else {
-      if (acc.adult === undefined) {
-        acc.adult = 0;
-      }
-      acc.adult += 1;
+  const counted = entrants.reduce((acc, cur, i) => {
+    if (i === 0) {
+      acc.child = 0;
+      acc.adult = 0;
+      acc.senior = 0;
     }
-
+    if (cur.age < 18) {
+      acc.child += 1;
+      return acc;
+    }
+    if (cur.age >= 50) {
+      acc.senior += 1;
+      return acc;
+    }
+    acc.adult += 1;
     return acc;
-  }, {})
-
+  }, {});
   return counted;
 }
 const entradas = [
@@ -34,8 +28,7 @@ const entradas = [
   { name: 'Núbia Souza', age: 18 },
   { name: 'Carlos Nogueira', age: 50 },
 ];
-
-countEntrants(entradas);
+console.log(countEntrants(entradas));
 
 function calculateEntry(entrants) {
   // seu código aqui
