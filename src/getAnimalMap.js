@@ -15,7 +15,7 @@ function getOnlyByLocation() {
 }
 
 function getAnimalMap(options) {
-  if (options === undefined) {
+  if (options === undefined || options.includeNames === undefined) {
     return getOnlyByLocation();
   }
 }
