@@ -1,15 +1,23 @@
 const data = require('../data/zoo_data');
 
-/*
-SEM PARÂMETROS RETORNA
-NE: especie1, especie2
-NW: especie3, e assim por diante
-SE:
-SW:
-*/
+// Primeiro item.
+function getOnlyByLocation() {
+  return data.species.reduce((acc, cur) => {
+    const { name, location } = cur;
+
+    if (acc[location] === undefined) {
+      acc[location] = [];
+    }
+    acc[location].push(name);
+
+    return acc;
+  }, {});
+}
 
 function getAnimalMap(options) {
-
+  if (options === undefined) {
+    return getOnlyByLocation();
+  }
 }
 
 module.exports = getAnimalMap;
