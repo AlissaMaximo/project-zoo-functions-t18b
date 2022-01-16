@@ -69,14 +69,23 @@ function getBySex(sex) {
   return organizedAnimals;
 }
 
-// FUNÇÃO PRINCIPAL.
-function getAnimalMap(options) {
-  if (options === undefined || options.includeNames === undefined) {
-    return getOnlyByLocation();
-  }
-  /* if (options.sorted === true && options.sex !== undefined) {
+// Sexto item.
+function getComplete(sex) {
+  const sexOrganized = getBySex(sex);
 
-  } */
+  Object.keys(sexOrganized).forEach((location) => {
+    sexOrganized[location].forEach((specie) => specie[Object.keys(specie)[0]].sort());
+  });
+
+  const organizedAnimals = sexOrganized;
+
+  return organizedAnimals;
+}
+
+function giveHelp(options) {
+  if (options.sorted === true && options.sex !== undefined) {
+    return getComplete(options.sex);
+  }
   if (options.sorted === true) {
     return getSortedNames();
   }
@@ -86,7 +95,15 @@ function getAnimalMap(options) {
   return getByName();
 }
 
-console.log(getAnimalMap({ includeNames: true, sex: 'female' }));
+// FUNÇÃO PRINCIPAL.
+function getAnimalMap(options) {
+  if (options === undefined || options.includeNames === undefined) {
+    return getOnlyByLocation();
+  }
+  return giveHelp(options);
+}
+
+console.log(getAnimalMap({ includeNames: true, sex: 'female', sorted: true }));
 
 module.exports = getAnimalMap;
 
