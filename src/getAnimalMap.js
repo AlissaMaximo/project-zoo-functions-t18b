@@ -37,21 +37,22 @@ const expected = {
 function getByName() {
   const organizedAnimals = species.reduce((accSpc, curSpc) => {
     const { name, location } = curSpc;
-    const { residents } = curSpc;
 
     if (accSpc[location] === undefined) {
       accSpc[location] = [];
     }
 
     let specie = {};
-    specie[name] = [];
 
     //rever este segundo reduce
-    curSpc.residents.reduce((accRes, curRes) => {
+    specie[name] = curSpc.residents.reduce((accRes, curRes) => {
       const resName = curRes.name;
-
-      specie[name].push(resName);
-
+      /* console.log('resName: '+resName); // cada vez mostra o nome do residente, de todos os animais.
+      console.log('specie name: '+name); //mostra a espécie atual.
+      console.log(accSpc); //mostra a ideia do objeto final.
+      console.log(specie); //mostra o objeto da espécie atual.*/
+      accRes.push(resName);
+      /* console.log(accRes); //mostra no final do ciclo um array com os nomes de cada residente para cada espécie. */
       return accRes;
     }, [])
 
@@ -72,3 +73,9 @@ function getAnimalMap(options) {
 console.log(getAnimalMap({ includeNames: true }));
 
 module.exports = getAnimalMap;
+
+
+/*
+Referência para getByName():
+https://stackoverflow.com/questions/40250139/push-object-into-array
+*/
